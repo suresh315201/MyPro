@@ -1,0 +1,16 @@
+Function fnGetDataTableValue(strColumnName)
+ 
+  'Add a data sheet in the QTP Data Table
+  DataTable.AddSheet("dtDataSheet")
+ 
+  'Import the Excel Sheet into QTP Data Table
+  DataTable.ImportSheet "D:\DataSheet.xls", sTestCaseName, "dtDataSheet"
+ 
+  'Find and return the value based on the column name
+  DataTable.SetCurrentRow 1
+  fnGetDataTableValue = DataTable.Value(strColumnName, "dtDataSheet")
+ 
+  'Remove Reference
+  DataTable.DeleteSheet("dtDataSheet")
+ 
+End Function

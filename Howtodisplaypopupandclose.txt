@@ -1,0 +1,31 @@
+﻿
+
+Set shell=createobject("wscript.shell")
+
+a="sri"
+b="SRI"
+
+If strcomp(a,b)=0 Then
+
+	shell.Popup "Equal","6","Strcompare"
+
+	else
+
+	shell.Popup "Not equal",7,"Strcomapre"
+End If
+
+Example2:
+
+Dim WshShell, BtnCode
+Set WshShell =  CreateObject("WScript.Shell")
+
+
+
+ BtnCode = WshShell.Popup("What is Your Name?", 7, "Answer This Question:", 4+32)
+
+Select Case BtnCode
+   case 6      msgbox "My name is Test"
+   case 7      msgbox "I Don't want to tell you"
+   case -1     msgbox "Is there anybody out there?"
+End Select
+

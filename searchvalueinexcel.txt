@@ -1,0 +1,73 @@
+﻿'Search for Particular value in Excel:
+
+Set myxl = createobject("excel.application")
+
+myxl.Workbooks.Open "D:\QTPtest\QTP.xls"
+myxl.Application.Visible = true
+
+set mysheet = myxl.ActiveWorkbook.Worksheets("Sheet1")
+
+
+
+ rcount=mysheet.usedrange.rows.count
+ ccount=mysheet.usedrange.columns.count
+
+
+ For r=1 to rcount
+
+	 For c=1 to ccount
+
+		search_data= mysheet.cells(r,c)
+
+new_data=trim(search_data)
+
+
+
+		If  new_data="Ram" Then
+
+mysheet.cells(r,c).Interior.ColorIndex = 40 
+
+
+
+		End If
+
+	 Next
+
+ Next
+
+'
+'With mysheet.UsedRange  
+'
+'
+'            For each search_data in mysheet.UsedRange
+'
+'           
+'                         If search_data="Ram" then  
+'                        
+'                                    search_data.font.color= vbRed
+'
+'                        End If
+'           next
+'End With
+ 
+'Save the Workbook
+myxl.ActiveWorkbook.Save
+ 
+'Close the Workbook
+myxl.ActiveWorkbook.Close
+ 
+'Close Excel
+myxl.Application.Quit
+ 
+Set mysheet =nothing
+Set myxl = nothing
+
+
+
+
+
+
+
+
+
+

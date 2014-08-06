@@ -1,0 +1,15 @@
+
+Type of Web object
+Class Name(micclass)
+1 WebBrowser		Browser
+2 Page			Page
+3 Editbox		WebEdit
+4 Image			Image
+5 Link			Link
+6 WebElement		WebElement
+7 ButtonWebButton
+8 Checkbox		WebCheckBox
+9 Combobox 		(DropDownList)WebList
+10 Table			WebTable
+
+11.RadioButton		WebRadioGroup

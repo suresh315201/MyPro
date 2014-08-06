@@ -1,0 +1,13 @@
+Const ForReading = 1
+Const ForWriting = 2
+Set fso = CreateObject( "Scripting.FileSystemObject" )
+Set textFile = fso.OpenTextFile( "D:\Sample.txt", ForReading )
+
+text = textFile.ReadAll
+
+textFile.Close
+
+newText = Replace( text, "Reddy ", "QuickTest ")
+Set textFile = fso.OpenTextFile( "D:\Sample.txt", ForWriting )
+textFile.WriteLine newText
+textFile.Close

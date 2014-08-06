@@ -1,0 +1,24 @@
+Public Function  updateLogsFile(Information,Message)
+
+ strLogFilePath = "D:\LogFile.txt"
+
+ Set fso = CreateObject("Scripting.FileSystemObject")
+
+ Time_Stamp = "| " &now& " | " &Information &" | " &Message & " |"
+
+ If fso.FileExists(strLogFilePath) Then
+
+    Set ts = fso.Opentextfile(strLogFilePath,8) 
+
+    ts.WriteLine ""&Time_Stamp
+ Else
+    Set Text = fso.CreateTextFile(strLogFilePath)
+        Text.WriteLine ""&Time_Stamp
+ End If
+
+ Set ts = Nothing
+ Set fso = Nothing
+
+ end function
+
+ call updateLogsFile("Gmail login page ","Result is pass")

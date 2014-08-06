@@ -1,0 +1,32 @@
+Function to check if a string matches a regular expression pattern'.
+ 
+Function RegEqual(r_Text,r_Pattern,MatchCompleteString)
+  Dim regEx,retVal
+ 
+'Create regular expression object'.
+Set regEx=New RegExp
+ 
+'Set pattern'
+regEx.Pattern=r_Pattern
+
+'Ignore case'
+regEx.IgnoreCase=True
+ 
+'Match complete String or Not'
+regEx.Global=MatchCompleteString
+ 
+'Test the regular expression
+RegEqual=regEx.Test(r_Text)
+Set regEx=Nothing
+End Function
+ 
+'Display True'
+Msgbox RegEqual("foos","foo|bar",False)
+'Display True'
+Msgbox RegEqual("foos","foo|bar",False)
+'Display False'
+Msgbox RegEqual("foo","fo(o|b)ar",True)
+'Display True'
+Msgbox RegEqual("Are you foo?","foo",True)
+'Display False,This is for a string starting and ending with foo which is foo only'.
+Msgbox RegEqual("Are you foo?","^foo$",True)

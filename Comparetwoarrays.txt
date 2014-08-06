@@ -1,0 +1,23 @@
+array1 = Array("a","b","c","d","e") 
+array2 = Array("f","g","a","h","d") 
+
+c = 0 
+For Each item1 In array1 
+found = False 
+For Each item2 In array2 
+If item1 = item2 Then 
+found = True 
+Exit For 
+End If 
+Next 
+
+If found = False Then 
+ReDim Preserve array3(c) 
+array3(c) = item1 
+c = c + 1 
+End If 
+Next 
+
+For Each key In array3 
+print key
+Next 

@@ -1,0 +1,8 @@
+str="krishna radha"
+A=Split(str," ")
+Fstring=A(0)
+Lstring=A(1)
+sLString=replace(Lstring,"r","R")
+sFString=replace(Fstring,"k","K")
+Rstring=sLString&" "&sFString
+MsgBox Rstring

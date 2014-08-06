@@ -1,0 +1,8 @@
+dim  b
+dim a 
+
+
+Set a=Nothing
+
+msgbox isobject(a)
+msgbox isarray(b)

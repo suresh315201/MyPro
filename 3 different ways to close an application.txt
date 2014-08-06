@@ -1,0 +1,100 @@
+﻿
+1.CloseProcessByName – 
+This method closes the process based on its image name in the task manager. 
+It returns a long value which represents the number of instances of the application
+that are closed using this method. 
+
+
+Example1:
+
+'Open 3 notepad instances
+SystemUtil.Run "notepad.exe"
+SystemUtil.Run "notepad.exe"
+SystemUtil.Run "notepad.exe"
+ 
+'Close the notepads using the image name
+iReturn = SystemUtil.CloseProcessByName("notepad.exe")
+msgbox iReturn 'Returns 3 as total 3 notepads are closed
+
+
+
+2. CloseProcessById – This method closes a process based on its Process ID and returns
+ a) True if the process was closed successfully b) 
+False if the process was not closed. 
+
+Example2:
+
+Dim pID_Notepad, pID_Excel
+ 
+'Open notepad and excel applications
+SystemUtil.Run "notepad.exe"
+SystemUtil.Run "excel.exe"
+ 
+'Find Process IDs of both the applications
+pID_Notepad = Window("regexpwndtitle:=Notepad").GetROProperty("process id")
+pID_Excel = Window("regexpwndtitle:=XLMAIN").GetROProperty("process id")
+ 
+'Close both the applications
+iReturn_N = SystemUtil.CloseProcessById(pID_Notepad)
+iReturn_E = SystemUtil.CloseProcessById(pID_Excel)
+ 
+msgbox iReturn_N 'Returns True
+msgbox iReturn_E 'Returns True
+
+
+
+3.CloseProcessByWndTitle – This method closes a process based on its window title
+ and returns a long value that represents the number of instances of the 
+applications that are closed. 
+
+Example3:
+
+Open notepad and excel applications
+SystemUtil.Run "notepad.exe"
+SystemUtil.Run "excel.exe"
+ 
+'Close all the tasks where the window title exactly matches "Untitled - Notepad"
+SystemUtil.CloseProcessByWndTitle "Untitled - Notepad", False
+'Close all the tasks where the window title contains the string "Excel"
+SystemUtil.CloseProcessByWndTitle "Excel", True
+
+
+4.CloseDescendentProcesses – This method closes all the processes that 
+are opened by QTP. It returns a long value which indicates the number of
+ instances of the application that are closed using this method. 
+
+
+Example4:
+'Open notepad and excel applications using QTP
+SystemUtil.Run "notepad.exe"
+SystemUtil.Run "excel.exe"
+ 
+'Close all the processes opened using QTP
+iReturn = SystemUtil.CloseDescendentProcesses
+msgbox iReturn
+
+
+5:CloseProcessByHwnd – This method closes a process based on
+ its window handle (The window handle can be found out using 
+‘hwnd’ property). This method returns a) True – if the process is 
+closed successfully, and b) False if the process is not closed.
+
+
+Example5:
+
+Dim hwnd_Notepad, hwnd_Excel
+ 
+'Open notepad and excel applications
+SystemUtil.Run "notepad.exe"
+SystemUtil.Run "excel.exe"
+ 
+'Find Handles of both the application windows
+hwnd_Notepad = Window("regexpwndtitle:=Notepad").GetROProperty("hwnd")
+hwnd_Excel = Window("regexpwndtitle:=XLMAIN").GetROProperty("hwnd")
+ 
+'Close both the applications
+iReturn_N = SystemUtil.CloseProcessByHwnd(hwnd_Notepad)
+iReturn_E = SystemUtil.CloseProcessByHwnd(hwnd_Excel)
+ 
+msgbox iReturn_N 'Returns True
+msgbox iReturn_E 'Returns True

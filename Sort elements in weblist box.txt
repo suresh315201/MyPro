@@ -1,0 +1,36 @@
+
+arrArrayAsc = Split(Browser("creationtime:=0").Page("title:=.*").WebList("name:=CompanyCode").GetROProperty("all items"), ";")
+ 
+Set oArrayList = CreateObject("System.Collections.ArrayList")
+ 
+For Each sElement in arrArrayAsc
+    If IsNumeric(sElement) Then
+      oArrayList.Add CInt(sElement)
+    Else
+      oArrayList.Add sElement
+
+	  msgbox sElement
+    End If
+Next
+ 
+
+oArrayList.Sort
+
+
+For each oo in oArrayList
+
+
+msgbox oo
+
+Next
+'Verify all elements in the Ascending array with the sorted oArrayList
+For x = LBound(arrArrayAsc) to UBound(arrArrayAsc)
+   'If the array element does not match the sorted element, then the original
+        'array is not in ascending order
+   If Not arrArrayAsc(x) = oArrayList(x) Then
+      MsgBox "Not Ascending"
+      Exit For
+   End If
+Next
+
+

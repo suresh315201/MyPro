@@ -1,0 +1,12 @@
+Set objExcel = CreateObject("Excel.Application")
+
+objExcel.Visible = True
+objExcel.DisplayAlerts = False
+
+Set objWorkbook = objExcel.Workbooks.Open ("D:\Inputdata.xls")
+Set objWorksheet = objWorkbook.Worksheets(1)
+
+
+objWorksheet.Name = "VBScript_Excel"
+objWorkbook.SaveAs ("D:\Inputdata.xls")
+objExcel.Quit

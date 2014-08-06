@@ -1,0 +1,10 @@
+set sInbox=browser("name:=Gmail - Inbox").page("title:=Gmail - Inbox").webtable("name:=Compose Mail","class:=m").ChildItem(3,1,"LinK",0)
+
+
+sInbox.click
+
+
+2nd method
+
+Browser("title:=Gmail.*").Page("title:=Gmail.*").Link("innertext:=Inbox.*").Click
+Browser("title:=Gmail.*").Page("title:=Gmail.*").Sync

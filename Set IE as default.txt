@@ -1,0 +1,8 @@
+
+1.From the Control Panel click on Add/Remove Programs then choose the Set Program Access 
+and Defaults button. Click the Custom button once. 
+From the list that appears, select Internet Explorer and then click the OK button. 
+
+2. Another way is to directly click Start and Run. In the Run window type control appwiz.cpl,,3
+
+and follow 1 step

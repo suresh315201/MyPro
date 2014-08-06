@@ -1,0 +1,8 @@
+sMessageFromApplication = Browser("Brw").Page("Pg").WebElement("WebEl").GetROProperty("innertext")
+ 
+'Check if the mail is successfully displayed or not
+If InStr(sMessageFromApplication, "Email Successfully Sent to") <> 0 Then
+   Reporter.ReportEvent micPass, "Pass", "Email Sent Successfully"
+Else
+   Reporter.ReportEvent micFail, "Fail", "Email NOT sent"
+End If

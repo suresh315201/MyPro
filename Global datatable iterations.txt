@@ -1,0 +1,18 @@
+
+How to exexute a script for all Global datatable iterations, 
+when the script is set to run for only one iteration in QTP
+
+
+
+''To Declare the  variable”
+Dim i,icount
+''To Get the Globalsheet object”
+Set Global=Datatable.GlobalSheet
+''To take the values in rows”
+icount=Global.GetRowCount
+For i=1to icount
+''To Set value in the current row”
+Global.SetCurrentRow i
+''To Execute the code that to be repeated here” 
+msgbox Datatable("Username")
+Next

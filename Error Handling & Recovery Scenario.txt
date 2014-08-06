@@ -1,0 +1,51 @@
+When to use Error handling(on error resume next)   vs   Recovery Scenarios ?
+
+If you can predict that a certain event may happen at a specific point in your test or component, it is recommended to handle that event directly within your test or component by adding steps such as If statements or optional steps or "on error resume next", rather than depending on a recovery scenario. Using Recovery Scenarios may result in unusually slow performance of your tests.They are designed to handle a more generic set of unpredictable events which CANNOT be handled programmatically.
+
+Example:
+
+A recovery scenario can handle a printer error by clicking the default button in the Printer Error message box.You cannot handle this error directly in your test, since you cannot know at what point the network will return the printer error. You could try to handle this event in your test by adding an If statement immediately after the step that sent a file to the printer, but if the network takes time to return the printer error, your test may have progressed several steps before the error is displayed. Therefore, for this type of event,only a recovery scenario can handle it.
+
+On error Statements
+
+Following are error statements :
+
+1. On Error Resume Next
+2. On Error Go to 0
+3. err.number
+4. err.description
+
+On Error Resume Next:
+
+On Error Resume Next statement enables the Error handling in the code.If there is error in the code "On error Resume Next" ignores it and continue with next line of code.
+
+On Error Go to 0:
+
+On error got to 0 statement disables error handling we have previiously enabled it by using On Error resume Next.
+
+err.number and err.description:
+
+Provides the error number and the description of the error
+
+Example:
+
+'Call  the function to divide
+call division
+ 
+Function division() 
+on error resume next
+ 
+'divide by zero
+z=40/0 
+ 
+' Report the  error occured. You can see the error number and description in result summary
+   If Err.number <> 0 then  
+ 
+Reporter.ReportEvent micWarning,"Error Occured","Error number is  " &  err.number & " and description is : " &  err.description
+ 
+ 'disables error handling 
+   on error goto 0 
+ 
+   End if
+ 
+End function

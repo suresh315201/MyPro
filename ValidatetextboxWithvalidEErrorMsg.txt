@@ -1,0 +1,64 @@
+
+browser("name:=actiTIME - Login").page("title:=actiTIME - Login").webbutton("name:= Login now ").Click
+
+
+set desc=description.Create
+
+desc("Micclass").value="WebElement"
+desc("class").value="errormsg"
+desc("height").value=28
+desc("visible").value=True
+Set ww=browser("creationtime:=0").page("title:=.*").ChildObjects(desc)
+
+
+
+
+Error_Message= ww(0).getroproperty("innertext")
+
+
+If instr(1,Error_Message,"Username or Password is invalid")<>0Then
+
+      Reporter.ReportEvent micPass, "Pass", "Error text  message displayed"
+Else
+   Reporter.ReportEvent micFail, "Fail", "Error text message not displayed"
+
+End If
+
+
+Example2:
+
+
+browser("name:=actiTIME - Login").page("title:=actiTIME - Login").webedit("name:=username").Set"adming"
+
+browser("name:=actiTIME - Login").page("title:=actiTIME - Login").webedit("name:=pwd").SetSecure("manager")
+
+
+browser("name:=actiTIME - Login").page("title:=actiTIME - Login").webbutton("name:= Login now ").Click
+
+
+set desc=description.Create
+
+desc("Micclass").value="WebElement"
+desc("class").value="errormsg"
+desc("height").value=28
+desc("visible").value=True
+Set ww=browser("creationtime:=0").page("title:=.*").ChildObjects(desc)
+
+
+
+
+
+
+
+
+If  browser("name:=actiTIME - Open Tasks").page("title:=actiTIME - Open Tasks").Exist(10)  then
+
+msgbox "Login Success"
+
+else
+Error_Message= ww(0).getroproperty("innertext")
+If instr(1,Error_Message,"Username or Password is invalid")<>0Then
+
+      msgbox "Error message displayed"
+end if
+End If

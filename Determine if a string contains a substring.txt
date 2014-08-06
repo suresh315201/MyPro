@@ -1,0 +1,9 @@
+s = "AdvancedQTP"
+searchStr = "A"
+If InStr( s, searchStr ) = 0 Then
+   Print "substring not found within s"
+
+   Else
+
+   Print "Substring is present"
+End If

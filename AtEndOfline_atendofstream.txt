@@ -1,0 +1,2 @@
+AtEndOfline :reads till it encounters a new line.
+AtEndOfstream: reads till end of the file. 

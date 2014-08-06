@@ -1,0 +1,14 @@
+Syntax
+object.GetRowWithCellText (Text, [Column], [StartFromRow])
+
+
+Example:
+
+r=browser("creationtime:=0").page("title:=.*").webtable("name:=Customer").GetRowWithCellText("testing")
+msgbox r
+
+
+
+set objlink=browser("creationtime:=0").page("title:=.*").webtable("name:=Customer").ChildItem(r,3,"Link",0)
+
+objlink.click

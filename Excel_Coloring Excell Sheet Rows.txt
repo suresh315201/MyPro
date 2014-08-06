@@ -1,0 +1,10 @@
+'Coloring Excell Sheet Rows  
+Set objrange=excel.activecell.entirerow  
+objrange.cells.interior.colorindex=37  
+
+
+
+'Coloring Excell Sheet Column
+
+Set objrange=excel.activecell.EntireColumn
+objrange.cells.interior.colorindex=37  

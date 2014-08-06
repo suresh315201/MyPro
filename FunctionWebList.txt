@@ -1,0 +1,63 @@
+Function SearchItemInWebList (ByVal TestObject, ByVal SearchItem, ByVal ExpectedResult)
+    'in case of any errors
+   On Error Resume Next
+   'checking whether the object exist
+   ObjectExist = TestObject.Exist(10)
+   If ObjectExist Then
+       MatchFound = False
+       WebListItems = Trim(TestObject.GetROProperty("all items"))
+       SplitWebListItems = Split(WebListItems, ";")
+       For iList = 0 to UBound(SplitWebListItems)
+            If Trim(SplitWebListItems(iList)) = SearchItem Then
+                MatchFound = True
+                Exit For
+            End If
+       Next
+           If ExpectedResult Then            
+               'in case a match is found
+               If MatchFound Then
+                   'reporting pass if specified item is found in the weblist
+                    Reporter.ReportEvent micPass, "Specified Item Found", "Specified item " & SearchItem & " is present in the web list."
+                    'setting function value
+                    SearchItemInWebList = TRUE
+                    'in case match is not found
+               ElseIf Not MatchFound Then
+                    'reporting error if specified item is not found in the weblist
+                    Reporter.ReportEvent micFail, "Cannot Find Specified Item", "Cannot find the specified item " & SearchItem & " in the web list."
+                    'setting function value
+                    SearchItemInWebList = FALSE
+               End If
+           ElseIf Not ExpectedResult Then
+               'in case a match is found
+               If MatchFound Then
+                   'reporting error if specified item is found in the weblist
+                    Reporter.ReportEvent micFail, "Specified Item Found", "Specified item " & SearchItem & " is present in the web list contrary to what was expected."
+                    'setting function value
+                    SearchItemInWebList = FALSE
+                    'in case match is not found
+               ElseIf Not MatchFound Then
+                    'reporting error if specified item is not found in the weblist
+                    Reporter.ReportEvent micPass, "Cannot Find Specified Item", "Cannot find the specified item " & SearchItem & " in the web list as expected."
+                    'setting function value
+                    SearchItemInWebList = TRUE
+               End If                        
+           End If
+    ElseIf Not ObjectExist Then
+         'reporting error if the specified object is not found
+        Reporter.ReportEvent micFail, "Cannot Find The Object", "Object specified in function call cannot be found."
+   End If
+End Function
+
+
+//Syntax
+
+'setting the test object
+Set TestObject = Browser("Nucleation").Page("Nucleation").WebList("SelectDestination")
+'checking whether location Dublin is present in the web list. Here we are expecting Dublin to be present in the weblist.
+Call SearchItemInWebList(TestObject, "Dublin", TRUE)
+'checking whether location Mysore is present in the web list. Here we are expecting Mysore should not be present in the weblist.
+Call SearchItemInWebList(TestObject, "Mysore", FALSE)
+'checking whether location Naples is present in the web list. Here we are expecting Naples should not be present in the weblist.
+Call SearchItemInWebList(TestObject, "Naples", FALSE)
+'checking whether location Goa is present in the web list. Here we are expecting Goa to be present in the weblist.
+Call SearchItemInWebList(TestObject, "Goa", TRUE)

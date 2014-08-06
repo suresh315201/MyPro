@@ -1,0 +1,82 @@
+'Variable Declaration
+App_Path = "C:\Program Files\Mercury Interactive\QuickTest Professional\samples\flight\app\flight4a.exe"
+
+Username="test"
+Password="mercury"
+
+Date_of_Flight = "121212"
+Fly_From = "Frankfurt"
+Fly_To = "Los Angeles"
+Cust_Name = "Test user"
+
+'Function Calls Section
+
+Invoke_FR App_Path
+Login_FR Username, Password
+InsertOrder_FR Date_of_Flight, Fly_From, Fly_To, Cust_Name, Order_Number
+OpenOrder_FR Order_Number
+UpdateOrder_FR Date_of_Flight, Fly_From,Fly_To, Cust_Name
+
+'Script to invoke the Flight Reservation Application
+'Checking whether a login screen is opened
+Public Function Invoke_FR(byval App_Path)
+If Not Dialog("Login").Exist(0) Then
+App_Path = "C:\Program Files\Mercury Interactive\QuickTest Professional\samples\flight\app\flight4a.exe"
+InvokeApplication App_Path
+End If
+End Function
+
+'Script to login in to the Application
+
+Public Function Login_FR(byval Username, byval Password)
+Dialog("Login").Activate
+Dialog("Login").WinEdit("Agent Name:").Set Username
+Dialog("Login").WinEdit("Password:").Set Password
+Dialog("Login").WinButton("OK").Click
+End Function
+
+'Script to insert an order and print the Order Number
+Public Function InsertOrder_FR(byval Date_of_Flight, byval Fly_From, byval Fly_To, byval Cust_Name, byref Order_Number)
+Window("Flight Reservation").Activate
+Window("Flight Reservation").WinButton("New").Click
+Window("Flight Reservation").WinObject("Date of Flight:").Type "121212"
+Window("Flight Reservation").WinComboBox("Fly From:").Select "Frankfurt"
+Window("Flight Reservation").WinComboBox("Fly To:").Select "Los Angeles"
+Window("Flight Reservation").WinButton("FLIGHT").Click
+Window("Flight Reservation").Dialog("Flights Table").WinButton("OK").Click
+Window("Flight Reservation").WinEdit("Name:").Set "Test user"
+Window("Flight Reservation").WinButton("Insert Order").Click
+Wait 8
+Ord_Num = Window("Flight Reservation").WinEdit("Order No:").GetRoProperty("text")
+Msgbox "The Order Number is: "&Ord_Num
+End Function
+
+'Script to Open an Existing Order
+'Here we will assume that the order is already inserted
+
+Public Function OpenOrder_FR(byval Order_Number)
+Window("Flight Reservation").Activate
+Window("Flight Reservation").WinButton("Open Button").Click
+Window("Flight Reservation").Dialog( "Open Order").WinCheckBox("Check order").Set "ON"
+Window("Flight Reservation").Dialog("Open Order").WinEdit("Order Number").Set Ord_Num
+Window("Flight Reservation").Dialog("Open Order").WinButton("OK").Click
+End Function
+
+'Script to update an existing order
+
+Public Function UpdateOrder_FR(byval Date_of_Flight, byval Fly_From, byval Fly_To, byval Cust_Name)
+Window("Flight Reservation").Activate
+Window("Flight Reservation").WinObject("Date of Flight:").Type "111111"
+Window("Flight Reservation").WinComboBox("Fly From:").Select "Los Angeles"
+Window("Flight Reservation").WinComboBox("Fly To:").Select "Frankfurt"
+Window("Flight Reservation").WinButton("FLIGHT").Click
+Window("Flight Reservation").Dialog("Flights Table").WinButton("OK").Click
+Window("Flight Reservation").WinEdit("Name:").Set "Test User 1"
+Window("Flight Reservation").WinButton("Update Order").Click
+End Function
+
+'Script to close the Application
+
+Window("Flight Reservation").Close
+
+

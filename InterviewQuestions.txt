@@ -1,0 +1,11 @@
+1.Which framework u r following and explain
+2.Explain V Module
+3.What is difference between verifcation and validation justify
+4.How u will select 3 checkbox from weblist
+5.How will check specified lable in webtable
+6.How will configure TFS to QTP
+7.Explain Bug life cycle
+8.Explain SDLC
+9.Explain STLC
+10.Explain keyword driven framework
+11.InstrRev explain

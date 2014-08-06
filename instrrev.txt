@@ -1,0 +1,10 @@
+instrRev:The InStrRev function returns the numeric position of the first occurrence of a specified substring
+ within a specified string when starting from the end (right end) of the string but count from Beginning  of the string
+
+<% InStrRev("ACBED ABCDE", "C") %>
+Output:
+9
+
+<% =InStrRev("ACBED ABCDE", "C", 9) %>
+Output:
+2

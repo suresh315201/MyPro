@@ -1,0 +1,79 @@
+﻿datatable.AddSheet("Module")
+datatable.AddSheet("Testcase")
+datatable.AddSheet("TestStep")
+
+
+datatable.ImportSheet"D:\QTPtest\Inputdata.xls",1,"Module"
+
+datatable.ImportSheet"D:\QTPtest\Inputdata.xls",2,"Testcase"
+datatable.ImportSheet"D:\QTPtest\Inputdata.xls",3,"TestStep"
+
+wait(10)
+
+
+Mrowcount=datatable.GetSheet("Module").GetRowCount
+
+For i=1 to Mrowcount step 1
+
+	datatable.SetCurrentRow(i)
+	Mexe=datatable.Value(3,"Module")
+
+	If ucase(Mexe)="Y" Then
+
+ModuleId=datatable.Value(1,"Module")
+
+Tcrowcount=datatable.GetSheet("Testcase").GetRowCount
+
+For j=1 to Tcrowcount step 1
+
+	datatable.SetCurrentRow(j)
+	ModuleId1=datatable.Value(4,"Testcase")
+	Tcexe=datatable.Value(3,"Testcase")
+
+	If Moduleid=ModuleId1 and ucase(Tcexe)="Y" Then
+
+		TcId=datatable.Value(1,"Testcase")
+
+Tsrowcount=datatable.GetSheet("TestStep").GetRowCount
+
+For K=1 to Tsrowcount step 1
+
+	datatable.SetCurrentRow(k)
+
+	TcId1=datatable.Value(5,"TestStep")
+
+	If  TcId=TcId1 Then
+
+
+Keyword=datatable.Value(3,"TestStep")
+
+Select Case Keyword
+
+Case "In"
+
+	msgbox "Well done"
+datatable.Value(6,"TestStep")="Pass"
+	Case "Ca"
+
+		Msgbox "good"
+		datatable.Value(6,"TestStep")="Fail"
+
+		Case "OP"
+			msgbox"well"
+                res=Login("Y")
+				datatable.Value(6,"TestStep")=res
+End Select
+
+end if 
+next
+
+end if
+next
+
+end if 
+
+next
+
+datatable.ExportSheet"D:\QTPtest\Inputdata.xls","TestStep"
+
+

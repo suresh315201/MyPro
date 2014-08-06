@@ -1,0 +1,38 @@
+'- - - - - Login Function - - - - -
+Function fnLogin()
+  'Open Application
+  'Enter Used Id and password
+  'Click on Login button
+  'Verify successful login
+End Function
+ 
+'- - - - - Logout Function - - - - -
+Function fnLogout()
+  'Logout from the application
+  'Verify Logout is successful
+  'Close the application
+End Function
+ 
+'===== Test Case 1 - Create Order =====
+'Call Login function
+fnLogin()
+ 
+'Code to create order
+' ..........
+' ..........
+' ..........
+ 
+'Call Logout function
+fnLogout()
+ 
+'===== Test Case 2 - Modify Order =====
+'Call Login function
+fnLogin()
+ 
+'Code to modify order
+' ..........
+' ..........
+' ..........
+ 
+'Call Logout function
+fnLogout()

@@ -1,0 +1,31 @@
+' Deleting Cell value from Excel Sheet  
+'###############################################  
+  
+'Create Excel Object    
+Set excel=createobject("excel.application")    
+    
+'Make it Visible    
+excel.Visible=True    
+  
+'Open the Excel File  
+Set workbook=excel.Workbooks.Open("D:\excel.xls")  
+  
+'Get the Control on Specific Sheet  
+Set worksheet1=excel.Worksheets.Item("Sheet1")  
+  
+'Delete Row1  
+worksheet1.Cells(Row,Col).delete  
+  
+'Save Excel  
+workbook.SaveAs("D:\excel.xls")  
+  
+'Close Work Book    
+workbook.Close    
+    
+'Quit from Excel Application    
+excel.Quit    
+    
+'Release Variables    
+Set worksheet1=Nothing  
+Set workbook=Nothing  
+Set excel=Nothing   

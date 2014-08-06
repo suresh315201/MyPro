@@ -1,0 +1,11 @@
+Const ForReading = 1, ForWriting = 2, ForAppending = 8
+Dim objfile
+Set objfile = CreateObject("Scripting.FileSystemObject")
+Set objref = objfile.opentextfile("C:\\Results.txt", ForReading, True)
+i = 0
+Do While objref.AtEndOfStream <> True
+TextLine = objref.ReadLine
+i = i + 1
+Loop
+
+MsgBox i

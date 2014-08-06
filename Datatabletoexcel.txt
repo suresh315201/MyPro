@@ -1,0 +1,21 @@
+datatable.AddSheet"Sheet1"
+
+datatable.ImportSheet"D:\QTPtest\qtp1.xls","Sheet1","Sheet1"
+
+
+datatable.GetSheet(3).AddParameter"Result",""
+
+wait 2
+
+row =datatable.GetSheet(3).GetRowCount
+For i = 1 to row
+    datatable.GetSheet(3).SetCurrentRow(i)
+    If   datatable.Value("Age",3) > 18  Then
+        datatable.Value("Result",3) = "Major"
+    Else
+        datatable.Value("Result",3) = "Minor"
+    End If
+ 
+Next
+
+Datatable.ExportSheet"D:\QTPtest\qtp1.xls","Sheet1"

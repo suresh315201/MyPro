@@ -1,0 +1,22 @@
+
+
+Expected_Item="eesti" 
+  Items_count=browser("name:=Google Accounts").page("title:=Google Accounts").weblist("name:=select").GetROProperty("Items Count")
+
+  For i=1 to Items_count
+       Current_Item=browser("name:=Google Accounts").page("title:=Google Accounts").weblist("name:=select").GetItem(i)
+
+       If trim(Current_Item)=Expected_Item Then
+
+Reporter.ReportEvent micPass, "Specified Item Found", "Specified item " & Expected_Item & " is present in the web list."
+
+      
+            browser("name:=Google Accounts").page("title:=Google Accounts").weblist("name:=select").Select Expected_Item
+            Exit for
+
+			else
+
+			reporter.ReportEvent micFail,"Cannot Find Specified Item", "Cannot find the specified item " & Expected_Item & " in the web list."
+			    Exit for
+       End If
+  Next

@@ -1,0 +1,20 @@
+Coding standards to be followed in the QTP ?
+1.Automation Engineer needs to add a section on top of every action/function which describes the action/function name,action/function description
+2.Option Explicit statement must be included in the begining of every script/action.
+3.The variables used in the action/function should be in the following way:
+intEmpNo for integer type of variables
+strEmpName for string type of variables
+arrintEmpNames for integer type of array variables.
+objQTP for object type of variables.
+4.Exceptions should be handled by Code
+5.Clear the objects at the end of the action/function
+6.Logical names in the object repository should follow the naming convention like:
+win_FlightReservation for windows
+dlg_Flights for dialogs
+txt_AgentName for text boxes/edit boxes.
+page_Google for web pages.
+RdBtn_Business for Radiob buttons.
+ChkBx_First for Check boxes.
+lst_FromCity for list /combo boxes.
+wt_EmpDetails for WebTable.
+lnk_Settings for

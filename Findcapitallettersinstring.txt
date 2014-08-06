@@ -1,0 +1,15 @@
+str= "ADlanda"
+n=len(str)
+msgbox n
+For i=0 to n-1
+a=mid(str,i+1,1)
+msgbox a
+
+msgbox ASC(A)
+If ASC(a)>=65 AND ASC(a)<=90 Then
+
+	
+strRes=strRes &a
+End If
+Next
+msgbox "Your Result is: " &strRes

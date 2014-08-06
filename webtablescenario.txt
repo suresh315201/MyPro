@@ -1,0 +1,32 @@
+﻿set CustomerTable=browser("name:=actiTIME - Open Tasks").page("title:=actiTIME - Open Tasks").webtable("name:=Customer")
+
+TotalRows=CustomerTable.RowCount
+SearchText ="redd"
+
+For CRow = 1 to TotalRows
+
+    if SearchText = Trim(CustomerTable.GetCellData(CRow, 1)) Then
+    
+               FoundRow = CRow
+            
+               MatchFound = TRUE
+               Exit For
+           End If
+
+
+Next
+
+
+If MatchFound Then
+  
+            Set LinkObject = CustomerTable.ChildItem(FoundRow, 3, "Link", 0)
+        
+            LinkObject.Click
+           
+            Reporter.ReportEvent micPass, "Specified Link Clicked Successfully.", "Successfully clicked the link " & LinkObject.GetROProperty("Text") & "."
+          
+       ElseIf Not MatchFound Then
+         
+            Reporter.ReportEvent micFail, "Cannot Find Specified Text", "Cannot find the text " & SearchText & " in the object specified in function call."
+       End If      
+

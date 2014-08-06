@@ -1,0 +1,33 @@
+Set ExcelApp=CreateObject("Excel.Application")
+
+
+
+ExcelApp.Workbooks.Open "D:\QTPtest\QTP.xls"
+
+ExcelApp.Application.Visible = true
+
+set mysheet = ExcelApp.ActiveWorkbook.Worksheets("Sheet1")
+
+
+ rcount=mysheet.usedrange.rows.count
+ ccount=mysheet.usedrange.columns.count
+Dim mylist()
+
+ For r=1 to rcount
+
+	 For c=1 to ccount
+ ReDim Preserve mylist(d)
+	mylist(d)= mysheet.cells(r,c).value
+d=d+1
+	 Next
+
+ Next
+
+
+
+
+For each ii in mylist
+
+	msgbox ii
+
+Next

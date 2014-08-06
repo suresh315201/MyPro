@@ -1,0 +1,22 @@
+'Get the list of all the items in the drop down field
+ = Browser("Brw").Page("Pg").WebList("WebL").GetROProperty("all items")
+ 
+'Split the string using ; as the delimiter
+arrItems = Split(sAll_Items, ";")
+iItemCount = UBound(arrItems)
+ 
+'Check if the item 'Orange' is available in the list or not
+flValueFound = False
+For i=0 to iItemCount
+   If arrItems(i) = "Orange" Then
+      flValueFound = True
+      Exit For
+   End If
+Next
+ 
+'Report the Result
+If flValueFound = True Then
+   Reporter.ReportEvent micPass, "Pass", "Value found in the WebList"
+Else
+   Reporter.ReportEvent micFail, "Failed", "Value NOT found in the WebList"
+End If

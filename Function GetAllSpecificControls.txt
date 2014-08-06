@@ -1,0 +1,29 @@
+Function GetAllSpecificControls(Page, MicClass)
+    Set Desc = Description.Create()
+    Desc("micclass").Value = MicClass
+    Set GetAllSpecificControls = Page.ChildObjects(Desc)
+End Function
+
+Function GetAllEdits(Page)
+    Set GetAllEdits = GetAllSpecificControls(Page, "WebEdit")
+End Function
+
+Function GetAllButtons(Page)
+    Set GetAllButtons = GetAllSpecificControls(Page, "WebButton")
+End Function
+
+Function GetAllLinks(Page)
+    Set GetAllLinks = GetAllSpecificControls(Page, "Link")
+End Function
+
+Function GetAllImages(Page)
+    Set GetAllImages = GetAllSpecificControls(Page, "Image")
+End Function
+
+
+Set oPage = Browser("Google Sets").Page("Google Sets")
+
+MsgBox "Number of Edits: " & GetAllEdits(oPage).Count
+MsgBox "Number of Buttons: " & GetAllButtons(oPage).Count
+MsgBox "Number of Links: " & GetAllLinks(oPage).Count
+MsgBox "Number of Images: " & GetAllImages(oPage).Count

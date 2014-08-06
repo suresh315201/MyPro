@@ -1,0 +1,18 @@
+
+
+
+Dim App 
+Set App = CreateObject("QuickTest.Application")
+
+App.Launch
+App.Visible = True
+
+App.Folders.Add("C:\Documents and Settings\Ayaskant Jena\Desktop\Vinay.qfl")
+App.Folders.Add("C:\Documents and Settings\Ayaskant Jena\Desktop\Repository1.tsr")
+App.Open "C:\Documents and Settings\Ayaskant Jena\Desktop\Ayas",False
+App.Test.Run
+
+
+
+App.quit
+Set App = nothing

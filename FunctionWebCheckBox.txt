@@ -1,0 +1,54 @@
+
+//QTP Function to verify the state of a WebCheckBox
+
+
+Function CheckBoxCheck(ByVal TestObject, ByVal ExpectedState)
+    'in case of any errors
+    On Error Resume Next
+    'checking whether the object exist
+    ObjectExist = TestObject.Exist(10)
+    If TestObject.GetROProperty("micclass") = "WebCheckBox" then ObjectIsCheckBox = True Else ObjectIsCheckBox = False
+    If ObjectExist and ObjectIsCheckBox Then        
+        'interpreting expected state
+        Select Case LCase(Trim(ExpectedState))
+            Case "on"
+                ExpectedState = 1
+                ExpectedText = "Checked"
+            Case "off"
+                ExpectedState = 0
+                ExpectedText = "Unchecked"
+            Case Else
+                Reporter.ReportEvent micFail, "Incorrect argument in function call", "Argument 'ExpectedState' should be specified as 'ON' or 'OFF'. You specified the argument as '" & ExpectedState & "'."
+            Exit Function
+        End Select
+        'checking the status of the checkbox
+        ActualState = TestObject.GetROProperty("checked")
+        'reporting pass or fail depending on the expected state
+        If ActualState = ExpectedState Then
+            Reporter.ReportEvent micPass, "CheckBox is '" & ExpectedText & "' as expected.", "CheckBox '" & TestObject.GetROProperty("name") & "' is '" & ExpectedText & "' as expected."
+        Else
+            Reporter.ReportEvent micFail, "CheckBox is not '" & ExpectedText & "' as expected.", "CheckBox '" & TestObject.GetROProperty("name") & "' is not '" & ExpectedText & "' as expected."
+        End If
+    ElseIf Not ObjectExist Then
+        Reporter.ReportEvent micFail, "Object Not Found", "Cannot find the object specified in the function call."
+        Exit Function
+    ElseIf Not ObjectIsCheckBox Then
+        Reporter.ReportEvent micFail, "Object Specified is not WebCheckBox", "Object specified in function call is not a WebCheckBox."
+    End If
+End Function
+
+
+//Syntax
+
+'Setting checkbox against Passenger 1 as testobject
+Set TestObject = Browser("Browser").Page("Page").WebCheckBox("Passenger 1")
+'Calling the function to check whether the check box is checked. Here we should get a pass.
+Call CheckBoxCheck(TestObject, "ON")
+'Calling function to check whetehr the check box is unchecked. Here we should get a fail.
+Call CheckBoxCheck(TestObject, "OFF")
+'Setting checkbox against Passenger 2 as testobject
+Set TestObject = Browser("Browser").Page("Page").WebCheckBox("Passenger 2")
+'Calling function to check whetehr the check box is unchecked. Here we should get a pass.
+Call CheckBoxCheck(TestObject, "OFF")
+'Calling the function to check whether the check box is checked. Here we should get a fail.
+Call CheckBoxCheck(TestObject, "ON")

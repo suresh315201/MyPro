@@ -1,0 +1,17 @@
+'You need to be logged into the Gmail account
+Browser("title:=Gmail.*").Page("title:=Gmail.*").Link("innertext:=Inbox.*").Click
+Browser("title:=Gmail.*").Page("title:=Gmail.*").Sync
+
+'To get the innertext of inbox link
+inboxcount = Browser("title:=Gmail.*").Page("title:=Gmail.*").Link("innertext:=Inbox.*").getroproperty("innertext")
+If inboxcount = "Inbox" Then
+Print "No Unread Emails."
+ExitAction
+Else
+emailcount = replace(inboxcount, "Inbox","") 'replaces inbox with space
+emailcount = Rtrim(ltrim(emailcount)) 'removes all the spaces
+emailcount = replace(emailcount, "(","")
+emailcount = replace(emailcount, ")","")
+Print "You have "&emailcount& " unread emails in your inbox."
+End If
+

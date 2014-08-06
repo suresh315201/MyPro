@@ -1,0 +1,27 @@
+Const ForReading=1
+
+
+Set fso=createobject("scripting.filesystemobject")
+
+i=0
+
+Set mFile=fso.OpenTextFile("D:\Sample.txt",ForReading)
+
+
+While not  mFile.AtEndOfStream
+
+c=mFile.Read(1)
+
+
+
+If strcomp(c,"[A-Za-z]")=1 or isnumeric(c) Then
+
+i=i+1
+
+End If
+
+
+wend
+
+
+msgbox i

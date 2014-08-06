@@ -1,0 +1,24 @@
+'Coloring Excell Sheet Cell  
+worksheet.cells(2,1).interior.colorindex=36 
+
+
+'Coloring Excell sheet for specified rows and columns range
+
+For j=1 to 3
+
+
+
+worksheet1.cells(1,j).interior.colorindex=36  
+
+
+
+Next
+
+
+
+'2nd Easy Method
+
+worksheet1.Range("A2:C2").interior.colorindex = 21 '/Interior color
+
+
+worksheet1.Range("A2:C2").font.color=VBgreen '/Text color

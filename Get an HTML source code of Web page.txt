@@ -1,0 +1,21 @@
+' to get an HTML source code of Web page
+HtmlCode = Browser("Google Labs").Page("Google Labs").Object.documentElement.outerHtml
+
+' save HTML code to a local file
+Set fso = CreateObject("Scripting.FileSystemObject")
+Set f = fso.CreateTextFile("C:\HtmlCode.html", True, -1)
+f.Write(HtmlCode)
+f.Close()
+
+' run tidy.exe to convert HTML to XHTML 
+Set oShell = CreateObject("Wscript.shell")
+oShell.Run "C:\tidy.exe --doctype omit -asxhtml -m -n C:\HtmlCode.html", 1, True ' waits for tidy.exe to be finished
+
+' create MSXML parser
+Set objXML = CreateObject("MSXML2.DOMDocument.3.0")
+objXML.Async = False 
+objXML.Load("C:\HtmlCode.html")
+
+XPath = "//a" ' XPath query means to find all links
+Set Links = objXML.SelectNodes(XPath)
+Msgbox "Total links: " & Links.Length

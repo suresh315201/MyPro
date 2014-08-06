@@ -1,0 +1,29 @@
+﻿Dim oDesc, x
+ 
+'Create a description object
+Set oDesc = Description.Create
+oDesc( "micclass" ).Value = "Browser"
+ 
+'Loop through the collection and close each browser
+If Desktop.ChildObjects(oDesc).Count > 0 Then
+    For x = Desktop.ChildObjects(oDesc).Count - 1 To 0 Step -1
+        Browser( "creationtime:=" & x ).Close
+    Next
+End If
+
+
+
+close all browsers except GmaIL:
+
+'Create a description object
+Set oDesc = Description.Create
+oDesc( "micclass" ).Value = "Browser"
+ 
+'Close all browsers except Quality Center
+If Desktop.ChildObjects(oDesc).Count > 0 Then
+    For x = Desktop.ChildObjects(oDesc).Count - 1 To 0 Step -1
+       If InStr(1, Browser("creationtime:="&x).GetROProperty("name"), "Gmail") = 0 Then  
+          Browser( "creationtime:=" & x ).Close
+       End If
+    Next
+End If

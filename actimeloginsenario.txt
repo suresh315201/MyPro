@@ -1,0 +1,50 @@
+datatable.AddSheet"Sheet1"
+
+datatable.ImportSheet"D:\QTPtest\acTIME.xls",1,"Sheet1"
+
+trowcount=datatable.GetSheet("Sheet1").GetRowCount
+For i=1 to trowcount
+datatable.SetCurrentRow(i)
+
+TCExe=datatable.Value(1,"Sheet1")
+
+If TCExe="Y" then
+
+
+
+systemutil.Run"C:\Program Files\Internet Explorer\IEXPLORE.EXE","http://computer/login.do"
+
+Browser("name:=actiTIME - Login").page("title:=actiTIME - Login").webedit("name:=username").Set"admin"
+
+browser("name:=actiTIME - Login").page("title:=actiTIME - Login").webedit("name:=pwd").Set "manager"
+
+
+
+browser("Name:=actiTIME - Login").Page("title:=actiTIME - Login").WebButton("name:=Login now").Click
+
+
+Page_Name=browser("name:=actiTIME - Open Tasks").page("title:=actiTIME - Open Tasks").GetROProperty("title")
+
+
+
+If Page_Name="actiTIME - Open Tasksasdasd"  Then
+
+	reporter.ReportEvent micPass,"Result","activeTIME-Open Tasks page opened-Passed"
+   datatable.Value(9,"Sheet1")="Pass"
+	else
+reporter.ReportEvent micFail ,"Result","activeTIME-Open Tasks page not opened-Failed"
+
+End If
+
+browser("name:=actiTIME - Open Tasks").page("title:=actiTIME - Open Tasks").image("name:=image","class:=logoutImg").Click
+
+ datatable.Value(9,"Sheet1")="Fail"
+
+
+End If
+datatable.SetNextRow
+Next
+
+
+
+datatable.Export"D:\QTPtest\acTIME.xls"

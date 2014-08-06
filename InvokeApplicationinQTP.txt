@@ -1,0 +1,13 @@
+App_Path = "C:\Program Files\HP\QuickTest Professional\samples\flight\app\flight4a.exe"
+InvokeApplication App_Path
+
+
+
+If Not Dialog("text:=Login").Exist(0) Then
+App_Path = "C:\Program Files\HP\QuickTest Professional\samples\flight\app\flight4a.exe"
+InvokeApplication App_Path
+
+else
+
+Msgbox "Application already opened"
+End If

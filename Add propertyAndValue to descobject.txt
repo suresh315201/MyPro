@@ -1,0 +1,2 @@
+﻿Set oDesc = Description.Create
+oDesc.Add "micclass", "Browser"

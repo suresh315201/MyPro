@@ -1,0 +1,40 @@
+Set objExcel=createobject("Excel.Application")
+
+Set myfile=objExcel.Workbooks.Open("D:\QTPtest\data.xls")
+
+Set mysheet=myfile.Worksheets("Sheet1")
+
+
+mysheet.cells(1,"C").value="TestResults"
+mysheet.cells(1,"D").value="Error_Message"
+systemutil.Run"C:\Program Files\Internet Explorer\IEXPLORE.EXE","http://computer/login.do"
+
+rcount=mysheet.usedrange.rows.count
+
+For i=2 to rcount step 1
+
+
+
+Browser("name:=actiTIME - Login").page("title:=actiTIME - Login").webedit("name:=username").Set mysheet.cells(i,"A")
+
+browser("name:=actiTIME - Login").page("title:=actiTIME - Login").webedit("name:=pwd").Set mysheet.cells(i,"B")
+
+
+browser("Name:=actiTIME - Login").Page("title:=actiTIME - Login").WebButton("name:=Login now").Click
+
+If browser("name:=actiTIME - Open Tasks").page("title:=actiTIME - Open Tasks").Exist(10) Then
+
+    browser("name:=actiTIME - Open Tasks").page("title:=actiTIME - Open Tasks").image("name:=image","class:=logoutImg").Click
+
+	mysheet.cells(i,"C")="Login Operation Successful"
+
+	else
+
+mysheet.cells(i,"C")="Login Operation Failed"
+Error_message=browser("name:=actiTIME - Login").page("title:=actiTIME - Login").webelement("class:=errormsg","innertext:=Username or Password is invalid. Please try again.").GetROProperty("innertext")
+msgbox Error_message
+mysheet.cells(i,"D")=Error_message
+End If
+
+
+next

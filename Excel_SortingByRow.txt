@@ -1,0 +1,16 @@
+Const xlAscending = 1
+Const xlNo = 2
+Const xlSortRows = 2
+
+Set objExcel = CreateObject("Excel.Application")
+objExcel.Visible = True
+
+Set objWorkbook = objExcel.Workbooks.Open("D:\Compare1.xls")
+Set objWorksheet = objWorkbook.Worksheets(1)
+objWorksheet.Cells(2,1).activate
+
+Set objRange = objExcel.ActiveCell.EntireRow
+
+objRange.Sort objRange, xlAscending, , , , , , xlNo, , , xlSortRows
+set objExcel=nothing
+

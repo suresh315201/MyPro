@@ -1,0 +1,11 @@
+Const ForReading=1
+
+Set fso=createobject("scripting.filesystemobject")
+
+Set mFolders=fso.GetFolder("C:\Documents and Settings\Administrator\Desktop\Programs")
+
+Set sFolders=mFolders.Files
+
+
+msgbox sFolders.Count
+

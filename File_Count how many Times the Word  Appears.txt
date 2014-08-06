@@ -1,0 +1,31 @@
+Const ForReading = 1
+Set fso = CreateObject( "Scripting.FileSystemObject" )
+Set textFile = fso.OpenTextFile( MyFile, ForReading )
+contents = textFile.ReadAll
+textFile.Close
+i = 0
+linesArray = Split( contents, " " )
+For Each lineStr in linesArray
+   If InStr( lineStr, "Error" ) Then
+      i = i + 1
+   End If
+Next
+Print "Number of failures: " & i
+
+
+
+2nd Method Using Regular expression.
+
+
+
+Const ForReading = 1
+Set fso = CreateObject( "Scripting.FileSystemObject" )
+Set textFile = fso.OpenTextFile( "D:\Sample.txt", ForReading )
+contents = textFile.ReadAll
+textFile.Close
+Set rgxp = New Regexp
+rgxp.Pattern = "Reddy"
+rgxp.IgnoreCase = False
+rgxp.Global = True
+Set matches = rgxp.Execute( contents )
+Print "Number of failures: " & matches.Count

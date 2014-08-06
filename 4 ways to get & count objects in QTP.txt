@@ -1,0 +1,28 @@
+4 ways to get & count objects in QTP
+
+
+How to count all links on Web page?
+How to get them and click each link?
+How to get all WebEdits and check their values?
+
+1.
+Set oDesc = Description.Create()
+oDesc("micclass").Value = "Link"
+Set Links = Browser("Google Labs").Page("Google Labs").ChildObjects(oDesc)
+Msgbox "Total links: " & Links.Count
+
+
+2.
+Set Links = Browser("Google Labs").Page("Google Labs").Object.Links
+Msgbox "Total links: " & Links.Length
+
+3.
+Set Links = browser("name:=actiTIME - Open Tasks").page("title:=actiTIME - Open Tasks").Object.GetElementsByTagName("a")
+Msgbox "Total links: " & Links.Length
+
+
+
+4.
+
+Set Links = Browser("Google Labs").Page("Google Labs").Object.all.tags("a")
+Msgbox "Total links: " & Links.Length

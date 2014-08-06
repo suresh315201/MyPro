@@ -1,0 +1,24 @@
+Set mExcel=createobject("excel.application")
+
+
+Set wBook=mExcel.Workbooks.Open("D:\Compare.xls")
+
+Set mSheet=mExcel.Worksheets(1)
+
+
+r=mSheet.usedrange.rows.count
+c=mSheet.usedrange.columns.count
+
+For i=2 to r
+
+	
+ v1=mSheet.cells(i,1)
+	v2= mSheet.cells(i,2)
+
+If v1=v2 then
+
+mSheet.cells(i,1).interior.ColorIndex = 40 
+
+End If
+
+	Next

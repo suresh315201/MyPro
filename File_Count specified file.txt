@@ -1,0 +1,25 @@
+Const ForReading=1
+
+Set fso=createobject("scripting.filesystemobject")
+
+Set mFolders=fso.GetFolder("C:\Documents and Settings\Administrator\Desktop\Programs")
+
+Set sFolders=mFolders.Files
+
+msgbox sFolders.count
+
+For each files1 in sFolders 
+
+
+	newfiles=files1.name
+
+
+If fso.GetExtensionName("C:\Documents and Settings\Administrator\Desktop\Programs" &newfiles)="txt" then
+
+	d=d+1
+
+End If
+
+Next
+
+msgbox d

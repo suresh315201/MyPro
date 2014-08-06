@@ -1,0 +1,25 @@
+'To find the specified string in Notepad using VB Scripting
+
+Const ForReading=1
+Set objFSO = CreateObject("Scripting.FileSystemObject")
+
+Set objFile = objFSO.OpenTextFile("D:\Sample.txt", 1)
+
+line_num = 0
+
+Do Until objFile.AtEndOfStream
+
+    strLine = objFile.ReadLine
+
+    
+
+    line_num = line_num+1
+
+         If  instr(1,strLine,"Error")<> 0 Then
+               MyPos = instr(1,strLine,"Error")
+
+               Msgbox "Line No: " &line_num& " Position: "&MyPos
+        End If
+Loop
+objFile.Close
+

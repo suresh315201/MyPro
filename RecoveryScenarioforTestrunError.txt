@@ -1,0 +1,22 @@
+browser("creationtime:=0").page("title:=.*").weblist("name:=customerProject.shownProject").Select "india"
+
+browser("creationtime:=0").page("title:=.*").webbutton("name:=Show Tasks").Click
+
+
+
+Function Recovery_ListItemIsNotFound(Object, Method, Arguments, retVal)
+     Dim sAllItems, arrAllItems, intItem
+ 
+     With Object
+          'Retrieve all items from the Listbox
+          sAllItems = .GetROProperty("all items")
+          'Split 'all items' using a delimiter ";" into an array
+          arrAllItems = Split(sAllItems, ";")
+ 
+          'Select a random number
+          intItem = RandomNumber.Value(LBound(arrAllItems), UBound(arrAllItems))
+          .Select "#" & intItem
+ 
+          Reporter.ReportEvent micInfo, "ListItemIsNotFound", "Item: " & .GetROProperty("value")
+     End With
+End Function

@@ -1,0 +1,7 @@
+rowsCount=xlWorkSheet.Evaluate("COUNTA(A:A)")
+
+ 'Will count the # of rows which have non blank value in the column A
+
+colsCount=xlWorkSheet.Evaluate("COUNTA(1:1)") 
+
+'Will count the # of non blank columns in 1st row

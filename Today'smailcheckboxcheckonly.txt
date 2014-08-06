@@ -1,0 +1,45 @@
+For i=1 to trowcount
+sLastColumnText=browser("name:=Gmail - Inbox").page("title:=Gmail - Inbox").webtable("name:=t").GetCellData(i,4)
+msgbox   sLastColumnText
+sLast2Characters = Right(trim(sLastColumnText), 2)
+msgbox  sLast2Characters
+ If sLast2Characters = "am" or sLast2Characters = "pm" Then
+set checkbox=        browser("name:=Gmail - Inbox").page("title:=Gmail - Inbox").webtable("name:=t").ChildItem(i,1,"WebCheckBox",0)
+
+checkbox.click
+
+    Else
+        Exit For
+    End If
+
+
+Next
+
+
+
+
+
+2 nd scenario
+
+
+trowcount=browser("name:=Gmail - Inbox").page("title:=Gmail - Inbox").webtable("name:=t").RowCount
+
+
+
+For i=1 to trowcount
+sLastColumnText=browser("name:=Gmail - Inbox").page("title:=Gmail - Inbox").webtable("name:=t").GetCellData(i,4)
+
+sLast2Characters = left(trim(sLastColumnText), 3)
+
+ If sLast2Characters = "Jul" then
+t=t+1
+
+else if sLast2characters="Jun" then
+Exit for
+
+ End If
+end if
+
+Next
+
+msgbox t
